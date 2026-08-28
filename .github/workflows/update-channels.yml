@@ -2,9 +2,9 @@ name: Update Channels JSON
 
 on:
   schedule:
-    # Runs at the top of every hour (UTC). GitHub may delay this slightly
-    # under load — it's a "best effort" schedule, not exact.
-    - cron: '0 * * * *'
+    # Runs at the top and bottom of every hour (UTC). GitHub may delay this
+    # slightly under load — scheduled workflows are "best effort".
+    - cron: '0,30 * * * *'
   workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
 
 permissions:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
         uses: actions/setup-python@v5
